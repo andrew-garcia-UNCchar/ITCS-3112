@@ -15,18 +15,18 @@ public class Student
         Reservations = new List<Reservation>();
     }
     
-    public int CurrentReservation()
+    public int CurrentReservations()
     {
         return Reservations.Count;
     }
 
     private bool ValidateEmail(string email)
     {
-        bool isEmail = False;
+        bool isEmail = false;
         
         if (email.Contains("@"))
-            IsEmail = true;
-        return IsEmail;
+            isEmail = true;
+        return isEmail;
     }
     
 }

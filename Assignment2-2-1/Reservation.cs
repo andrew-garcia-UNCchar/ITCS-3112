@@ -17,8 +17,11 @@ public class Reservation
 
     public void SetReservation()
     {
-         if (ValidateRequestTime())
-             ReservationStatus = true;
+        if (ValidateRequestTime())
+        {
+            ReservationStatus = true;
+            Student.Reservations.Add(this);
+        }
     }
 
     private bool ValidateRequestTime()
