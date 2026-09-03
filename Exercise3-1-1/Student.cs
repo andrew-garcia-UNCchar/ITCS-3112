@@ -45,5 +45,5 @@ public class Student
         StudentId = studentId;
         Email = email;
     }
-    
+     
 }
