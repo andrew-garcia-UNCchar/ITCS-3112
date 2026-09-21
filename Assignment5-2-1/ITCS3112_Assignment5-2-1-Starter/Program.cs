@@ -15,6 +15,7 @@ class Program
 
         Student maya = new(Guid.NewGuid(), "Maya Chen", "maya@example.edu");
         Student jordan = new(Guid.NewGuid(), "Jordan Smith", "jordan@example.edu");
+        Teacher matt = new(Guid.NewGuid(), "Matt", email: "matt@charlotte.edu", department: "Computer Science");
 
         ParticipationCategory askingQuestions = new(
             Guid.NewGuid(),
@@ -39,14 +40,14 @@ class Program
         categoryRepository.Add(askingQuestions);
         categoryRepository.Add(helpingOthers);
 
-        ParticipationRecord firstRecord = new(
+        ParticipationRecord firstRecord = matt.RecordParticipation(
             Guid.NewGuid(),
             maya,
             askingQuestions,
             DateTime.Now.AddMinutes(-25),
             "Connected the question to class invariants.");
 
-        ParticipationRecord secondRecord = new(
+        ParticipationRecord secondRecord = matt.RecordParticipation(
             Guid.NewGuid(),
             jordan,
             helpingOthers,
@@ -86,7 +87,7 @@ class Program
         Console.WriteLine("\nREJECTED DOMAIN OPERATION");
         try
         {
-            _ = new ParticipationRecord(
+            _ = matt.RecordParticipation(
                 Guid.NewGuid(),
                 maya,
                 askingQuestions,
@@ -125,5 +126,23 @@ class Program
         retrievedStudents.Clear();
         Console.WriteLine($"Repository count after clearing the retrieved list: {studentRepository.GetAll().Count}");
 
+        List<Person> people = new() {maya, jordan, matt};
+        for (Person person = people[0])
+        {
+            Console.WriteLine($"{person.Name}: {person.GetRoleDescription()}");
+        }
+
+        List<IParticipationAdministrator> administrators = new() { matt };
+        for (IParticipationAdministrator administrator = administrators[0])
+        {
+            ParticipationRecord record = administrator.RecordParticipation(
+                Guid.NewGuid(),
+                maya,
+                askingQuestions,
+                DateTime.Now,
+                "Connected the question to class invariants.");
+            
+            recordRepository.Add(record);
+        }
     }
 }

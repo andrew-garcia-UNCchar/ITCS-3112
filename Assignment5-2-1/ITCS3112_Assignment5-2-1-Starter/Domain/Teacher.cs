@@ -16,7 +16,7 @@ public sealed class Teacher : Person, IParticipationAdministrator
     public string Department { get; set; }
     public override string GetRoleDescription()
     {
-        return $"Name: {Name}, Email: {Email}, Department: {Department}";
+        return $"Teacher in {Department}";
     }
 
     public ParticipationRecord RecordParticipation(

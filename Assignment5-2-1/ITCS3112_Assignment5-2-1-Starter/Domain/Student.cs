@@ -33,6 +33,6 @@ public class Student : Person
     /// <returns>The student's name, email, and active status.</returns>
     public override string GetRoleDescription()
     {
-        return $"Name: {Name}, Email: {Email}";
+        return $"Student. IsActive: {IsActive}";
     }
 }
