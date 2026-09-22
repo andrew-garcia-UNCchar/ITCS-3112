@@ -16,7 +16,8 @@ class Program
         Student maya = new(Guid.NewGuid(), "Maya Chen", "maya@example.edu");
         Student jordan = new(Guid.NewGuid(), "Jordan Smith", "jordan@example.edu");
         Teacher matt = new(Guid.NewGuid(), "Matt", email: "matt@charlotte.edu", department: "Computer Science");
-
+        InstructorAssistant marek = new(Guid.NewGuid(), "Marek", "marek@charlotte.edu", "ITCS 3112");
+        
         ParticipationCategory askingQuestions = new(
             Guid.NewGuid(),
             "Ask a Question",
@@ -126,13 +127,13 @@ class Program
         retrievedStudents.Clear();
         Console.WriteLine($"Repository count after clearing the retrieved list: {studentRepository.GetAll().Count}");
 
-        List<Person> people = new() {maya, jordan, matt};
+        List<Person> people = new() {maya, jordan, matt, marek};
         for (Person person = people[0])
         {
             Console.WriteLine($"{person.Name}: {person.GetRoleDescription()}");
         }
 
-        List<IParticipationAdministrator> administrators = new() { matt };
+        List<IParticipationAdministrator> administrators = new() { matt, marek};
         for (IParticipationAdministrator administrator = administrators[0])
         {
             ParticipationRecord record = administrator.RecordParticipation(
