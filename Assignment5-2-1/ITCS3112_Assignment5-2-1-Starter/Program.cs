@@ -128,13 +128,13 @@ class Program
         Console.WriteLine($"Repository count after clearing the retrieved list: {studentRepository.GetAll().Count}");
 
         List<Person> people = new() {maya, jordan, matt, marek};
-        for (Person person = people[0])
+        foreach (Person person in people)
         {
             Console.WriteLine($"{person.Name}: {person.GetRoleDescription()}");
         }
 
         List<IParticipationAdministrator> administrators = new() { matt, marek};
-        for (IParticipationAdministrator administrator = administrators[0])
+        foreach (IParticipationAdministrator administrator in administrators)
         {
             ParticipationRecord record = administrator.RecordParticipation(
                 Guid.NewGuid(),
