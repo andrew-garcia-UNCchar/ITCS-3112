@@ -17,18 +17,32 @@ public class ConsoleUI
     public void RunLogin()
     {
         // TODO: Ask for the username and password, then call Authenticate.
-        throw new NotImplementedException();
+        Console.WriteLine("Username: ");
+        string username = Console.ReadLine() ?? string.Empty;
+        Console.WriteLine("Password: ");
+        string password = Console.ReadLine() ?? string.Empty;
+        try
+        {
+            SessionTokenDto sessionToken = _authService.Authenticate(username, password);
+            DisplayLoginSuccess(sessionToken);
+        }
+        catch
+        {
+            DisplayLoginFailed();
+        }
     }
 
     private static void DisplayLoginSuccess(SessionTokenDto sessionToken)
     {
         // TODO: Display the username, display name, and token.
-        throw new NotImplementedException();
+        Console.WriteLine($"Username: {sessionToken.Username}");
+        Console.WriteLine($"Display Name: {sessionToken.DisplayName}");
+        Console.WriteLine($"Token: {sessionToken.Token}");
     }
 
     private static void DisplayLoginFailed()
     {
         // TODO: Display the generic login-failure message.
-        throw new NotImplementedException();
+        Console.WriteLine("Login failed. Check your username and password.");
     }
 }

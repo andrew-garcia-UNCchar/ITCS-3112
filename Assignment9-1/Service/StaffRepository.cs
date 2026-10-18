@@ -19,6 +19,8 @@ public class StaffRepository
     public StaffAccount? FindByUsername(string username)
     {
         // TODO: Use Find to return the account whose Username equals username.
-        return null;
+        StaffAccount? targetUser = _accounts.Find(user => user.Username == username);
+        
+        return targetUser;
     }
 }
